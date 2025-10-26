@@ -16,7 +16,7 @@
             font-size: 14px;
             line-height: 1.5;
         `;
-        document.body.appendChild(outputContainer);
+        document.body.append(outputContainer);
         
         // 实现 process.stdout.write
         window.process = {
@@ -46,9 +46,11 @@
         // 更新DOM显示
         function updateOutput() {
             const combinedText = buffer.join('');
-            outputContainer.innerHTML = '';
+            buffer.length = 0;
+            const div = document.createElement("div")
             const textNode = document.createTextNode(combinedText);
-            outputContainer.appendChild(textNode);
+            div.append(textNode);
+            outputContainer.append(div);
         }
     }
 })();
